@@ -1,0 +1,42 @@
+{
+  "monsters": [{
+    "name": "Orc",
+    "cr": "1/2",
+    "xp": 100
+  },
+  {
+    "name": "Owlbear",
+    "cr": "3",
+    "xp": 700
+  },
+  {
+    "name": "Drow",
+    "cr": "1/4",
+    "xp": 50
+  },
+  {
+    "name": "Brass Dragon Wyrmling",
+    "cr": "1",
+    "xp": 200
+  },
+  {
+    "name": "Giant Spider",
+    "cr": "1",
+    "xp": 200
+  },
+  {
+    "name": "Gelatinous Cube",
+    "cr": "2",
+    "xp": 450
+  },
+  {
+    "name": "Gargoyle",
+    "cr": "2",
+    "xp": 450
+  },
+  {
+    "name": "Azer",
+    "cr": "2",
+    "xp": 450
+  }]
+}
