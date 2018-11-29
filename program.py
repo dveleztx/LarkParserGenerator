@@ -20,7 +20,8 @@ data = os.path.join(base_folder, "json")
 def main():
     print_header()
     # test_lark_grammar()
-    custom_json_parser()
+    # custom_json_parser()
+    language_semantics()
 
 
 def print_header():
@@ -60,7 +61,7 @@ def custom_json_parser():
     ?value: dict
           | list
           | ESCAPED_STRING
-          | SIGNED_NUMBER      -> decimal
+          | SIGNED_NUMBER      -> number
           | "true"             -> true
           | "false"            -> false
           | "null"             -> null
@@ -83,6 +84,35 @@ def custom_json_parser():
     with open(monsters) as f:
         monster_json = json_parser.parse(f.read())
         print(monster_json.pretty())
+
+
+def language_semantics():
+    grammar = """
+        sentence: noun verb noun        -> simple
+                | noun verb "like" noun -> comparative
+
+        noun: adj? NOUN
+        verb: VERB
+        adj: ADJ
+
+        NOUN: "flies" | "bananas" | "fruit" | "developers" | "code" | "expert"
+        VERB: "like" | "flies" | "write" 
+        ADJ: "fruit" | "expert"
+
+        %import common.WS
+        %ignore WS
+    """
+
+    parser = Lark(grammar, start='sentence', ambiguity='explicit')  # Explicit ambiguity in parse tree!
+
+    tree = parser.parse("fruit flies like bananas")
+    print(tree.pretty())
+
+    tree = parser.parse("developers write code")
+    print(tree.pretty())
+
+    tree = parser.parse("expert developers write code")
+    print(tree.pretty())
 
 
 if __name__ == "__main__":
